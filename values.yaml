@@ -41,10 +41,10 @@ ingress:
       alb.ingress.kubernetes.io/subnets: "subnet-051c617783829b0e2, subnet-065696453f3e92d42",
       alb.ingress.kubernetes.io/security-groups: "sg-0efd175462c527d70",
       alb.ingress.kubernetes.io/tags: "Environment=poc,Team=devops"}
-   hosts:
+  hosts:
     # - chart-example.local
     - kibana-marchex.inspur.us
-   path: /
+  path: /
   # annotations:
   #   kubernetes.io/ingress.class: nginx
   #   kubernetes.io/tls-acme: "true"
