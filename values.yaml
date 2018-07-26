@@ -17,7 +17,7 @@ env:
   # SERVER_DEFAULTROUTE: "/app/kibana"
 
 service:
-  type: ClusterIP
+  type: NodePort
   externalPort: 443
   internalPort: 5601
   ## External IP addresses of service
@@ -37,10 +37,13 @@ service:
 ingress:
   enabled: true
 
-  annotations: {alb.ingress.kubernetes.io/scheme: "internet-facing",
-      alb.ingress.kubernetes.io/subnets: "subnet-051c617783829b0e2, subnet-065696453f3e92d42",
-      alb.ingress.kubernetes.io/security-groups: "sg-0efd175462c527d70",
-      alb.ingress.kubernetes.io/tags: "Environment=poc,Team=devops"}
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: "internet-facing"
+    alb.ingress.kubernetes.io/subnets: "subnet-051c617783829b0e2, subnet-065696453f3e92d42"
+    alb.ingress.kubernetes.io/security-groups: "sg-0efd175462c527d70"
+    alb.ingress.kubernetes.io/tags: "Environment=poc,Team=devops"
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}]'
   hosts:
     # - chart-example.local
     - kibana-marchex.inspur.us
